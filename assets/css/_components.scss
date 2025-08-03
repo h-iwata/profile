@@ -1,0 +1,414 @@
+// Hero Section
+.hero {
+  min-height: 100vh;
+
+  @include flex-center;
+
+  text-align: center;
+  padding: $spacing-3xl 0;
+
+  @include glassmorphism;
+
+  margin: $spacing-lg 0;
+  box-shadow: $shadow-md;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.profile-image {
+  margin-bottom: $spacing-xl;
+  
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: $border-radius-full;
+    border: 4px solid $text-white;
+    box-shadow: $shadow-xl;
+    transition: $transition-transform;
+    background: $text-white;
+    padding: 8px;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.name {
+  @include heading-1;
+}
+
+.title {
+  font-size: $font-size-3xl;
+  color: $text-light;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-normal;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: $text-light;
+  margin-bottom: $spacing-xl;
+  line-height: $line-height-relaxed;
+}
+
+.social-links {
+  @include flex-center;
+
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+}
+
+.social-link {
+  @include social-link;
+}
+
+// Section Styles
+section {
+  @include glassmorphism(0.95);
+
+  margin: $spacing-2xl 0;
+  padding: $spacing-3xl $spacing-2xl;
+  box-shadow: $shadow-md;
+  
+  h2 {
+    @include heading-2;
+  }
+}
+
+// About Section
+.about-content {
+  p {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-xl;
+    line-height: $line-height-relaxed;
+  }
+}
+
+.skills {
+  h3 {
+    @include heading-3;
+  }
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.skill-tag {
+  background: $bg-gradient;
+  color: $text-white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: $font-weight-medium;
+  transition: $transition-transform;
+  display: inline-block;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba($primary-color, 0.4);
+  }
+}
+
+// Projects Section
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-xl;
+  margin-top: $spacing-2xl;
+}
+
+.project-card {
+  @include card-base;
+
+  p {
+    color: $text-secondary;
+    margin-bottom: $spacing-lg;
+    line-height: $line-height-base;
+  }
+}
+
+.project-image {
+  width: 60px;
+  height: 60px;
+  background: $bg-gradient;
+  border-radius: $border-radius-md;
+
+  @include flex-center;
+
+  margin-bottom: $spacing-lg;
+  color: $text-white;
+  font-size: $font-size-3xl;
+}
+
+.project-header-content {
+  @include flex-between;
+
+  margin-bottom: $spacing-md;
+  
+  h3 {
+    margin-bottom: 0;
+    flex: 1;
+  }
+}
+
+.current-badge {
+  @include flex-center;
+
+  gap: 6px;
+  background: $success-gradient;
+  color: $text-white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: $font-weight-semibold;
+  margin-top: $spacing-sm;
+  margin-left: $spacing-md;
+  
+  i {
+    font-size: 0.6rem;
+  }
+}
+
+.current-job {
+  border: 2px solid $success-color;
+  box-shadow: 0 5px 20px rgba($success-color, 0.2);
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
+}
+
+.project-highlights {
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  
+  h4 {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-md;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      position: relative;
+      padding-left: $spacing-lg;
+      margin-bottom: $spacing-sm;
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      
+      &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: $primary-color;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+.project-links {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.project-link {
+  @include flex-center;
+
+  gap: 8px;
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+// Experience Section
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: $bg-gradient;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: $spacing-2xl;
+  padding-left: 60px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 11px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: $bg-gradient;
+  border-radius: $border-radius-full;
+  border: 4px solid $text-white;
+  box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+}
+
+.timeline-content {
+  h3 {
+    @include heading-3;
+
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: $text-secondary;
+    line-height: $line-height-base;
+  }
+}
+
+.experience-header {
+  @include flex-between;
+
+  margin-bottom: 5px;
+  padding-right: $spacing-sm;
+  
+  h3 {
+    margin-bottom: 0;
+    flex: 1;
+  }
+}
+
+.timeline-item.current-job .timeline-dot {
+  background: $success-gradient;
+  box-shadow: 0 0 0 4px rgba($success-color, 0.2);
+}
+
+.company {
+  color: $primary-color;
+  font-weight: $font-weight-medium;
+  margin-bottom: 5px;
+}
+
+.period {
+  color: $text-muted;
+  font-size: 0.9rem;
+  margin-bottom: $spacing-sm;
+}
+
+.department {
+  color: $text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.experience-details {
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px solid #e2e8f0;
+  
+  .detail-item {
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    strong {
+      color: $text-primary;
+      font-weight: $font-weight-semibold;
+      display: block;
+      margin-bottom: 6px;
+    }
+  }
+  
+  .tech-stack {
+    color: $primary-color;
+    font-weight: $font-weight-medium;
+    background: rgba($primary-color, 0.1);
+    padding: 3px 6px;
+    border-radius: $border-radius-sm;
+    font-size: 0.85rem;
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      color: $text-secondary;
+      padding: 2px 0;
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      
+      &::before {
+        content: '▸';
+        color: $primary-color;
+        position: absolute;
+        left: 0;
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// Contact Section
+.contact {
+  text-align: center;
+  
+  p {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.contact-buttons {
+  @include flex-center;
+
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  &.primary {
+    @include button-primary;
+  }
+  
+  &.secondary {
+    @include button-secondary;
+  }
+}
+
+// Footer
+.footer {
+  text-align: center;
+  padding: $spacing-2xl 0;
+  color: $text-white;
+  font-size: 0.9rem;
+} 

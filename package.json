@@ -1,0 +1,25 @@
+{
+  "name": "h-iwata-profile",
+  "version": "1.0.0",
+  "description": "H-iwata Developer Profile Site",
+  "scripts": {
+    "lint:html": "htmlhint index.html _layouts/*.html",
+    "lint:scss": "stylelint \"assets/css/_*.scss\"",
+    "lint": "pnpm run lint:html && pnpm run lint:scss",
+    "lint:fix": "stylelint \"assets/css/_*.scss\" --fix"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.1.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-config-recommended-vue": "^1.5.0"
+  },
+  "keywords": [
+    "jekyll",
+    "profile",
+    "developer",
+    "portfolio"
+  ],
+  "author": "h-iwata",
+  "license": "MIT"
+}

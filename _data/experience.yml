@@ -1,0 +1,188 @@
+- company: "ライフイズテック株式会社"
+  title: "オンライン・実スクール運営システム開発"
+  department: "システム開発チーム"
+  period: "2018年3月 - 現在"
+  current: true
+  technologies: 
+    - "Ruby(Rails)"
+    - "ES6(React)"
+    - "JavaScript"
+    - "Stripe"
+  description: |
+    オンライン型プログラミングスクールの新サービス立ち上げ。
+    レガシー化していたリアルスクール運営システムの維持管理全般を担当。
+  tasks:
+    - "大規模レガシーシステムのリファクタリング"
+    - "複雑な仕様を吸収したユーザーの申し込みフォームの開発"
+    - "stripeの導入・実装"
+    - "メンター管理システム開発"
+    - "生徒出欠管理システム"
+    - "講義スケジュール管理システム"
+    - "合宿システム開発"
+
+- company: "株式会社サクセス"
+  title: "ソーシャルゲームサーバーサイド開発"
+  department: "サーバーサイドチーム"
+  period: "2017年12月 - 2018年3月"
+  current: false
+  technologies:
+    - "PHP(FuelPHP)"
+    - "MySQL"
+  description: |
+    発売直前のソーシャルゲーム「23/7 トゥエンティ スリー セブン」のサーバーサイドピンチヒッターとして参加。
+  tasks:
+    - "チャレンジ周りの設計全面見直し、再実装"
+    - "phpunitを使ったテスト化・リファクタリング"
+    - "パフォーマンスチューニング"
+    - "DB設計・実装"
+    - "マスター更新のマクロ作成"
+
+- company: "GUILD STUDIO株式会社"
+  title: "モバイルゲーム UI開発"
+  department: "フロントエンドチーム"
+  period: "2017年4月 - 2017年12月"
+  current: false
+  technologies:
+    - "C#(Unity)"
+    - "Zenject"
+    - "Flux"
+  description: |
+    「ロマンシング サガ リ・ユニバース」のキャラ劇システムの設計から実装まで全般担当。
+    Unity Test Runnerを導入してテスト駆動開発を推進。
+    UI全般の設計、実装を担当。
+  tasks:
+    - "キャラ劇システムの設計・実装"
+    - "パーティ編成・装備変更UI実装"
+    - "Editor拡張の企画・設計・実装"
+    - "DIシステム・Fluxの導入"
+    - "チーム内githubコミット数一位達成"
+
+- company: "株式会社インテリジェンス"
+  title: "ビジネスマン向け資料作成ツール開発"
+  department: "フロントエンドチーム（リーダー）"
+  period: "2016年7月 - 2017年3月"
+  current: false
+  technologies:
+    - "JavaScript"
+    - "ReactJS"
+    - "Flux"
+    - "AmCharts"
+    - "Python"
+    - "Ruby"
+    - "PHP"
+  description: |
+    ビジネスマン向け資料作成ツール「buismo」のフロントエンドチームリーダーとして新規立ち上げ。
+  tasks:
+    - "開発環境選定・構築"
+    - "ReactJS+Fluxへの技術選定変更"
+    - "グラフ作成システムの設計・実装"
+    - "ペアプログラミング・コードレビュー"
+    - "サーバーサイドAPI設計"
+
+- company: "株式会社DMM.com"
+  title: "電子書籍サイトデータ更新システム開発"
+  department: "サーバーサイドチーム"
+  period: "2015年12月 - 2016年5月"
+  current: false
+  technologies:
+    - "PHP(FuelPHP)"
+    - "Ruby"
+    - "MySQL"
+    - "Solr"
+    - "Couchbase"
+    - "Memcached"
+  description: |
+    電子書籍サイトのデータ更新クローラーを主に担当。
+    段階的リファクタリングとパフォーマンス最適化を実施。
+  tasks:
+    - "商品データ更新バッチの設計・実装"
+    - "AOP導入によるパフォーマンス分析"
+    - "マルチスレッド化による高速化"
+    - "管理画面機能追加"
+    - "Jenkinsでの疑似マルチスレッド実装"
+
+- company: "株式会社アカツキ"
+  title: "モバイルゲームメモリ最適化"
+  department: "プログラミングチーム"
+  period: "2015年10月 - 2015年11月"
+  current: false
+  technologies:
+    - "C++"
+    - "Ruby"
+    - "Spine"
+  description: |
+    「メザマシフェスティバル」のメモリ削減とバグフィックスを担当。
+    新規機能開発も実施。
+  tasks:
+    - "TextureCacheの最適化"
+    - "Spineの遅延ロード実装"
+    - "Spine定義ファイル最適化ツール作成"
+    - "Android 2033問題対応"
+    - "Push通知機能の設計・実装"
+
+- company: "株式会社オートックワン"
+  title: "ソーシャルゲーム開発チーフエンジニア"
+  department: "開発チーム"
+  period: "2015年1月 - 2015年9月"
+  current: false
+  technologies:
+    - "C++(Cocos2d-x)"
+    - "Java"
+    - "Objective-C"
+    - "PHP(CakePHP)"
+  description: |
+    「車なご」のソーシャルゲーム開発チーフエンジニアとして、
+    クライアント・サーバー・インフラ全般を担当。
+  tasks:
+    - "既存コードのリファクタリング指導"
+    - "クライアントサイド開発（通信、DB、ゲームロジック、UI、課金システム）"
+    - "サーバーサイドAPI作成"
+    - "インフラ整備（IDCF, EC2）"
+    - "開発環境構築（Chef-solo, Vagrant, Ansible）"
+
+- company: "アスタミューゼ株式会社"
+  title: "特許情報サイト開発"
+  department: "フロントエンド・サーバーサイドチーム"
+  period: "2012年7月 - 2014年12月"
+  current: false
+  technologies:
+    - "CoffeeScript"
+    - "JavaScript"
+    - "HTML"
+    - "Sass"
+    - "Java(Spring)"
+    - "Scala(Lift)"
+    - "PHP(ZF2)"
+    - "Ruby(Rails3)"
+    - "Groovy(Spock)"
+    - "R"
+  description: |
+    特許版GitHub「astamuse」を中心とした知財関連サイトの開発。
+    フロントエンドからサーバーサイドまで幅広く担当。
+  tasks:
+    - "Dojoフレームワーク導入"
+    - "CoffeeScriptによる開発高速化"
+    - "フロントエンド・サーバーサイド開発"
+    - "API作成・管理画面作成"
+    - "SEO対策・運用保守"
+
+- company: "株式会社クインテット"
+  title: "Webコンサルティング・開発"
+  department: "開発チーム"
+  period: "2010年2月 - 2012年7月"
+  current: false
+  technologies:
+    - "HTML"
+    - "CSS"
+    - "PHP(Zend Framework, CakePHP)"
+    - "JavaScript"
+    - "MySQL"
+  description: |
+    美容関連クリニックの総合コンサルティングから始まり、独学でプログラミングを習得。
+    新規プロジェクトに抜擢される。
+  tasks:
+    - "サイト制作（企画、デザイン、コーディング）"
+    - "SEO・広告調整"
+    - "ECサイト「monotalk」開発"
+    - "ダンススクール「ゴールドスクール」開発"
+    - "パチスロ情報サイト「P-NEXT」開発" 

@@ -1,0 +1,123 @@
+// Responsive Design
+@include mobile {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero {
+    padding: $spacing-2xl $spacing-lg;
+    margin: $spacing-sm 0;
+  }
+  
+  .name {
+    font-size: $font-size-5xl;
+  }
+  
+  .title {
+    font-size: $font-size-xl;
+  }
+  
+  section {
+    padding: $spacing-2xl $spacing-lg;
+    margin: $spacing-lg 0;
+  }
+  
+  section h2 {
+    font-size: $font-size-4xl;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+  
+  .social-links {
+    gap: $spacing-md;
+  }
+  
+  .social-link {
+    width: 45px;
+    height: 45px;
+    font-size: $font-size-lg;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .timeline::before {
+    left: 15px;
+  }
+  
+  .timeline-item {
+    padding-left: 50px;
+  }
+  
+  .timeline-dot {
+    left: 6px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .experience-details {
+    margin-top: $spacing-sm;
+    padding-top: $spacing-sm;
+  }
+  
+  .experience-details .detail-item {
+    margin-bottom: $spacing-md;
+  }
+  
+  .experience-details .tech-stack {
+    font-size: 0.8rem;
+    padding: 2px 4px;
+  }
+  
+  .experience-details .task-list li {
+    font-size: 0.85rem;
+    padding-left: 15px;
+  }
+  
+  .project-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+  
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .current-badge {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+  }
+}
+
+@include mobile-small {
+  .name {
+    font-size: $font-size-4xl;
+  }
+  
+  .description {
+    font-size: $font-size-base;
+  }
+  
+  .skill-tags {
+    gap: 8px;
+  }
+  
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+} 

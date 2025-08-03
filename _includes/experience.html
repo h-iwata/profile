@@ -1,0 +1,43 @@
+<!-- Experience Section -->
+<section class="experience">
+    <h2>業務経験</h2>
+    <div class="timeline">
+        {% for experience in site.data.experience %}
+        <div class="timeline-item {% if experience.current %}current-job{% endif %}">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="experience-header">
+                    <h3>{{ experience.title }}</h3>
+                    {% if experience.current %}
+                    <div class="current-badge">
+                        <i class="fas fa-circle"></i>
+                        <span>Now!</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <p class="company">{{ experience.company }}</p>
+                <p class="department">{{ experience.department }}</p>
+                <p class="period">{{ experience.period }}</p>
+                <div class="experience-details">
+                    <div class="detail-item">
+                        <strong>使用技術:</strong>
+                        <span class="tech-stack">{{ experience.technologies | join: ", " }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>概要:</strong>
+                        <p>{{ experience.description | newline_to_br }}</p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>担当業務:</strong>
+                        <ul class="task-list">
+                            {% for task in experience.tasks %}
+                            <li>{{ task }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section> 

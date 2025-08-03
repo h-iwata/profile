@@ -1,0 +1,41 @@
+- title: "オンライン・実スクール運営システム"
+  description: "ライフイズテック株式会社のオンライン型プログラミングスクールの新サービス立ち上げ。レガシー化していたリアルスクール運営システムの維持管理全般を担当。"
+  technologies: ["Ruby(Rails)", "ES6(React)", "JavaScript", "Stripe"]
+  period: "2018年3月 - 現在"
+  current: true
+  image: "graduation-cap"
+  github_url: "https://github.com/h-iwata"
+  highlights:
+    - "大規模リファクタリング"
+    - "複雑な仕様を吸収したユーザーの申し込みフォームの開発"
+    - "stripeの導入・実装"
+    - "メンター管理システム開発"
+    - "生徒出欠管理システム"
+    - "講義スケジュール管理システム"
+    - "合宿システム開発"
+
+- title: "モバイルゲーム UI開発"
+  description: "「ロマンシング サガ リ・ユニバース」のキャラ劇システムの設計から実装まで全般担当。Unity Test Runnerを導入してテスト駆動開発を推進。UI全般の設計、実装を担当。"
+  technologies: ["C#(Unity)", "Zenject", "Flux"]
+  period: "2017年4月 - 2017年12月"
+  current: false
+  image: "mobile"
+  github_url: "https://github.com/h-iwata"
+  highlights:
+    - "キャラ劇システムの設計・実装"
+    - "パーティ編成・装備変更UI実装"
+    - "Editor拡張の企画・設計・実装"
+    - "DIシステム・Fluxの導入"
+    - "チーム内githubコミット数一位達成"
+
+- title: "電子書籍サイトデータ更新システム開発"
+  description: "電子書籍サイトのデータ更新クローラーを主に担当。段階的リファクタリングとパフォーマンス最適化を実施。"
+  technologies: ["PHP(FuelPHP)", "Ruby", "MySQL", "Solr", "Couchbase", "Memcached"]
+  period: "2015年12月 - 2016年5月"
+  current: false
+  image: "book"
+  github_url: "https://github.com/h-iwata"
+  highlights:
+    - "商品データ更新バッチの設計・実装"
+    - "AOP導入によるパフォーマンス分析"
+    - "マルチスレッド化による高速化" 

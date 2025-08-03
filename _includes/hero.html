@@ -1,0 +1,23 @@
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="profile-image">
+            <img src="https://github.com/{{ site.github_username }}.png?size=200" alt="Profile" id="profile-img">
+        </div>
+        <h1 class="name">{{ site.name | default: site.github_username }}</h1>
+        <p class="title">{{ site.title_description | default: "Software Developer" }}</p>
+        <div class="description">
+            {{ site.description | newline_to_br }}
+        </div>
+        <div class="social-links">
+            <a href="https://github.com/{{ site.github_username }}" class="social-link">
+                <i class="fab fa-github"></i>
+            </a>
+            {% if site.linkedin_username %}
+            <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section> 

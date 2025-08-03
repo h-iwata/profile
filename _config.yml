@@ -1,0 +1,51 @@
+title: h-iwata - Developer Profile
+name: h-iwata
+title_description: Software Developer
+description: |
+  未経験の技術に対する挑戦意欲と学習スピードが私の一番の強みです。
+  言語や分野についてのこだわりは特にありません。
+  何でどう作るかより、何を作るかを重視しています。
+about_description: |
+  新人の頃から現在に至るまで、「実装スピードを犠牲にせずにコードは常に綺麗に保つ」ということを徹底しています。
+  実装だけを目的としたコードではなく、意味が伝わりやすく、コピペしやく、プロジェクトの寿命を延ばしていくコードを心がけています。
+baseurl: "/profile" # the subpath of your site, e.g. /blog
+url: "https://h-iwata.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: h-iwata
+linkedin_username: hideyuki-iwata-39a570176/
+contact_description: 新しいプロジェクトやコラボレーションの機会について話し合いましょう。
+
+# Skills
+skills:
+  - "ruby(rails, jekyll, metasploit)"
+  - "JavaScript(reactjs, babel, dojo toolkit, jquery, nodejs,firefox add-on sdk)"
+  - "C++11 (cocos2d-x)"
+  - "php(laravel, FuelPHP, Zend Framework2, Zend Framework, symphony, cakePHP, smarty)"
+  - "java(Spring Framework, android sdk)"
+  - "coffeescript"
+  - "SQL"
+  - "TypeScript"
+  - "HTML"
+  - "css(bootstrap, foundation, sass, less, compass)"
+  - "Boo, unity script, C#(Unity)"
+  - "groovy(spock)"
+  - "scala(lift)"
+  - "Shell Script, PowerShell"
+  - "C"
+  - "Python"
+  - "C#"
+  - "Stripe"
+  - "Git"
+
+# Build settings
+markdown: kramdown
+plugins: []
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

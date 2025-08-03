@@ -1,0 +1,17 @@
+<!-- About Section -->
+<section class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+        <p>
+            {{ site.about_description | newline_to_br }}
+        </p>
+        <div class="skills">
+            <h3>経験言語(FW)</h3>
+            <div class="skill-tags">
+                {% for skill in site.skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

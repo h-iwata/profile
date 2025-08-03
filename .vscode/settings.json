@@ -1,0 +1,95 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": null,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "files.associations": {
+    "*.html": "html"
+  },
+  "[scss]": {
+    "editor.formatOnSave": false
+  },
+  "[css]": {
+    "editor.formatOnSave": false
+  },
+  "htmlhint.enable": true,
+  "htmlhint.validate": [
+    "html"
+  ],
+  "htmlhint.documentSelector": [
+    "**/*.html",
+    "!**/_includes/**",
+    "!**/_layouts/**",
+    "!**/_site/**",
+    "!**/_data/**"
+  ],
+  "htmlhint.options": {
+    "tagname-lowercase": true,
+    "attr-lowercase": true,
+    "attr-value-double-quotes": true,
+    "attr-value-not-empty": false,
+    "attr-no-duplication": true,
+    "doctype-first": false,
+    "tag-pair": true,
+    "tag-self-close": false,
+    "spec-char-escape": true,
+    "id-unique": true,
+    "src-not-empty": true,
+    "title-require": true,
+    "alt-require": true,
+    "doctype-html5": true,
+    "id-class-value": "dash",
+    "style-disabled": false,
+    "inline-style-disabled": false,
+    "inline-script-disabled": false,
+    "space-tab-mixed-disabled": "space",
+    "id-class-ad-disabled": false,
+    "href-abs-or-rel": false,
+    "attr-unsafe-chars": true
+  },
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
+  "stylelint.documentSelector": [
+    "**/*.scss",
+    "**/*.css",
+    "!**/assets/css/style.scss"
+  ],
+  "html.format.enable": true,
+  "html.format.wrapLineLength": 300,
+  "html.format.wrapAttributes": "auto",
+  "html.format.templating": true,
+  "scss.format.enable": false,
+  "scss.validate": false,
+  "emmet.includeLanguages": {
+    "html": "html"
+  },
+  "emmet.syntaxProfiles": {
+    "html": {
+      "attr_quotes": "double"
+    }
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/_site": true,
+    "**/.sass-cache": true,
+    "**/.jekyll-cache": true,
+    "**/.jekyll-metadata": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/_site": true,
+    "**/.sass-cache": true,
+    "**/.jekyll-cache": true,
+    "**/.jekyll-metadata": true
+  },
+  "extensions.ignoreRecommendations": false,
+  "extensions.autoUpdate": true,
+  "extensions.autoCheckUpdates": true
+}
