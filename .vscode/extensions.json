@@ -2,6 +2,17 @@
   "recommendations": [
     "htmlhint.vscode-htmlhint",
     "rebornix.ruby",
-    "Shopify.ruby-lsp"
+    "Shopify.ruby-lsp",
+    "stylelint.vscode-stylelint",
+    "sibiraj-s.vscode-scss-formatter",
+    "syler.sass-indented",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "formulahendry.auto-rename-tag",
+    "ritwickdey.LiveServer",
+    "ms-vscode.live-server"
   ]
 } 
