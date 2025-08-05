@@ -2,6 +2,8 @@
 
 個人的な開発者プロフィールサイトです。
 
+🌐 **本番サイト**: https://h-iwata.github.io/profile/
+
 ## 🚀 使用技術
 
 - **Jekyll** - 静的サイトジェネレーター
@@ -95,19 +97,23 @@ profile/
 
 ### GitHub Pagesへのデプロイ
 
-1. **GitHubリポジトリの設定**
-   - GitHubでリポジトリを作成
-   - リポジトリ名を `h-iwata.github.io` にするか、`profile` などの名前で作成
+**本番URL**: https://h-iwata.github.io/profile/
 
-2. **GitHub Actionsの設定**
-   - `.github/workflows/deploy.yml` ファイルを作成（必要に応じて）
+1. **GitHubリポジトリの設定**
+   - リポジトリ: `h-iwata/profile`
+   - GitHub Pages: mainブランチからの自動デプロイ設定済み
+
+2. **GitHub Actionsによる自動デプロイ**
+   - `.github/workflows/jekyll.yml` で設定済み
+   - mainブランチへのプッシュ時に自動的にビルド・デプロイ
 
 3. **手動デプロイ**
    ```bash
    # ビルド
    bundle exec jekyll build
    
-   # _siteディレクトリの内容をGitHub Pagesにアップロード
+   # mainブランチにプッシュすると自動デプロイ
+   git push origin main
    ```
 
 ### カスタムドメインの設定
