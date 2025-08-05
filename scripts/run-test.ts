@@ -13,8 +13,11 @@ const runTests = () => {
     console.log('✅ Jekyll server is running');
   } catch {
     console.log('⚠️  Starting Jekyll server...');
-    // バックグラウンドでJekyllサーバーを起動
-    execSync('bundle exec jekyll serve &', { stdio: 'inherit' });
+    // バックグラウンドでJekyllサーバーを起動 (cross-platform, proper process management)
+    const jekyllProcess = spawn('bundle', ['exec', 'jekyll', 'serve'], {
+      detached: true,
+      stdio: 'inherit'
+    });
     // サーバーの起動を待つ
     execSync('sleep 5');
   }
