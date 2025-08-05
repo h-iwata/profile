@@ -34,6 +34,9 @@ Thumbs.db
 *.swo
 *~
 
+# Claude Code
+.claude/
+
 # Logs
 *.log
 npm-debug.log*
@@ -44,4 +47,17 @@ node_modules/
 .pnpm-store/
 
 # Linter cache
-.stylelintcache 
+.stylelintcache
+
+# Playwright
+playwright-report/
+test-results/
+tests/generated/
+playwright/.cache/
+
+# TypeScript
+*.tsbuildinfo
+dist/
+
+# pnpm
+pnpm-lock.yaml

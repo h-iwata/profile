@@ -91,5 +91,9 @@
   },
   "extensions.ignoreRecommendations": false,
   "extensions.autoUpdate": true,
-  "extensions.autoCheckUpdates": true
+  "extensions.autoCheckUpdates": true,
+  "playwright.reuseBrowser": true,
+  "playwright.showTrace": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

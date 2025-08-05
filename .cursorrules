@@ -102,3 +102,72 @@ bundle exec jekyll build
 - SCSS のコンパイルエラーは行番号を確認
 - ブラウザの開発者ツールでレイアウト問題を調査
 - `jekyll build --verbose`で詳細なビルドログを確認
+
+## テスト自動生成
+
+### テスト生成リクエスト時の対応
+ユーザーが「テストを生成」「E2Eテストを書いて」などと言った場合：
+
+1. `tests/specs/`ディレクトリの`.test.md`ファイルを確認
+2. 関連する仕様があればそれを使用、なければユーザーの要求から理解
+3. 以下のコマンドでテスト生成：
+
+```bash
+# 自然言語から生成
+pnpm test:gen "テストしたい内容"
+
+# 仕様ファイルから生成
+pnpm test:gen --spec tests/specs/機能名.test.md
+```
+
+### Playwrightテストコード規約
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+// 日本語でdescribeブロックを記述
+test.describe('機能名', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  // 日本語でテストケースを記述
+  test('ユーザーが○○できることを確認', async ({ page }) => {
+    // セレクタの優先順位：
+    // 1. data-testid属性
+    await expect(page.locator('[data-testid="element"]')).toBeVisible();
+    
+    // 2. Role属性
+    await page.getByRole('button', { name: 'ボタン名' }).click();
+    
+    // 3. テキスト
+    await expect(page.getByText('期待するテキスト')).toBeVisible();
+  });
+});
+```
+
+### テスト関連のディレクトリ構造
+```
+tests/
+├── specs/            # 自然言語仕様
+├── generated/        # AI生成テスト
+├── manual/          # 手動作成テスト
+├── pages/           # Page Objects
+├── helpers/         # ヘルパー関数
+└── fixtures/        # テストデータ
+```
+
+### よく使うテストコマンド
+```bash
+# テスト生成
+pnpm test:gen "内容"
+
+# テスト実行
+pnpm test
+pnpm test:ui          # UIモード
+pnpm test:debug       # デバッグモード
+pnpm test:headed      # ブラウザ表示
+
+# 監視モード
+pnpm test:watch       # 仕様変更を監視して自動生成
+```
