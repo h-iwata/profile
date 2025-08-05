@@ -44,4 +44,17 @@ node_modules/
 .pnpm-store/
 
 # Linter cache
-.stylelintcache 
+.stylelintcache
+
+# Playwright
+playwright-report/
+test-results/
+tests/generated/
+playwright/.cache/
+
+# TypeScript
+*.tsbuildinfo
+dist/
+
+# pnpm
+pnpm-lock.yaml
