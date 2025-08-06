@@ -1,5 +1,7 @@
 # h-iwata Developer Profile
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/h-iwata/profile/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/h-iwata/profile/tree/main)
+
 個人的な開発者プロフィールサイトです。
 
 🌐 **本番サイト**: https://h-iwata.github.io/profile/

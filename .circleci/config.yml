@@ -1,0 +1,172 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.1.4
+  node: circleci/node@5.2.0
+
+executors:
+  jekyll-executor:
+    docker:
+      - image: cimg/ruby:3.4.5-node
+    working_directory: ~/repo
+
+jobs:
+  lint-html-scss:
+    executor: jekyll-executor
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Setup pnpm package manager
+          command: |
+            # pnpmをスタンドアロンインストール（権限エラー回避）
+            wget -qO- https://get.pnpm.io/install.sh | env SHELL=/bin/bash PNPM_VERSION=10.14.0 sh -
+            echo 'export PNPM_HOME="/home/circleci/.local/share/pnpm"' >> $BASH_ENV
+            echo 'export PATH="$PNPM_HOME:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+            pnpm config set store-dir .pnpm-store
+      - run:
+          name: Install Node dependencies
+          command: |
+            pnpm install --no-frozen-lockfile
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .pnpm-store
+      - run:
+          name: Run SCSS linter
+          command: pnpm run lint:scss
+      - ruby/install-deps:
+          bundler-version: '2.6.1'
+      - run:
+          name: Build Jekyll site
+          command: bundle exec jekyll build
+      - run:
+          name: Run HTML linter
+          command: pnpm run lint:html
+
+  build-jekyll:
+    executor: jekyll-executor
+    steps:
+      - checkout
+      - ruby/install-deps:
+          bundler-version: '2.6.1'
+      - run:
+          name: Jekyll build
+          command: bundle exec jekyll build --verbose
+      - run:
+          name: Check build output
+          command: |
+            if [ ! -d "_site" ]; then
+              echo "Build failed: _site directory not found"
+              exit 1
+            fi
+            echo "Build successful! Site files:"
+            ls -la _site/
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - _site
+
+  playwright-test:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.54.2-jammy
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Setup pnpm package manager
+          command: |
+            # pnpmをスタンドアロンインストール
+            wget -qO- https://get.pnpm.io/install.sh | env SHELL=/bin/bash PNPM_VERSION=10.14.0 sh -
+            echo 'export PNPM_HOME="/root/.local/share/pnpm"' >> $BASH_ENV
+            echo 'export PATH="$PNPM_HOME:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+            pnpm config set store-dir .pnpm-store
+      - run:
+          name: Install dependencies
+          command: |
+            pnpm install --no-frozen-lockfile
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .pnpm-store
+      - run:
+          name: Run Playwright tests
+          command: |
+            # サーバー用ディレクトリ構成
+            mkdir -p temp_serve/profile
+            cp -r _site/* temp_serve/profile/
+            
+            # 必要パッケージをインストール
+            pnpm add -D http-server
+            
+            # サーバー起動とテスト実行
+            npx http-server temp_serve -p 4000 &
+            sleep 3
+            export BASE_URL="http://localhost:4000/profile"
+            pnpm test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: playwright-report
+          destination: playwright-report
+
+  security-scan:
+    docker:
+      - image: cimg/ruby:3.4.5
+    steps:
+      - checkout
+      - run:
+          name: Install bundler-audit
+          command: gem install bundler-audit
+      - run:
+          name: Update vulnerability database
+          command: bundle audit update
+      - run:
+          name: Check for vulnerable dependencies
+          command: bundle audit check
+
+workflows:
+  version: 2
+  test-and-build:
+    jobs:
+      - lint-html-scss:
+          filters:
+            branches:
+              ignore: gh-pages
+      - build-jekyll:
+          filters:
+            branches:
+              ignore: gh-pages
+      - playwright-test:
+          requires:
+            - build-jekyll
+          filters:
+            branches:
+              ignore: gh-pages
+      - security-scan:
+          filters:
+            branches:
+              ignore: gh-pages
+
+  nightly-security-check:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - security-scan
