@@ -20,6 +20,21 @@ bundle exec jekyll serve --livereload
 bundle exec jekyll build
 ```
 
+### テスト実行
+```bash
+# E2Eテスト実行
+pnpm test
+
+# UIモードでテスト
+pnpm test:ui
+
+# デバッグモード
+pnpm test:debug
+
+# ブラウザを表示してテスト
+pnpm test:headed
+```
+
 ### リンティングとコード品質
 ```bash
 # すべてのリンターを実行
@@ -42,6 +57,9 @@ bundle install
 
 # Node.js依存関係をインストール
 pnpm install
+
+# Playwrightブラウザをインストール
+pnpm exec playwright install
 ```
 
 ## アーキテクチャと構造
@@ -49,8 +67,10 @@ pnpm install
 ### コア技術
 - **Jekyll 4.4.1**: 静的サイトジェネレーター
 - **Ruby 3.4.5**: rbenv経由で管理 (.ruby-version)
-- **Node.js v24.5.0**: ビルドツールとリンティング用 (.node-version)
-- **pnpm**: Node.js依存関係のパッケージマネージャー
+- **Node.js v24.5.0**: ビルドツールとテスト用 (.node-version)
+- **pnpm 10.14.0**: Node.js依存関係のパッケージマネージャー
+- **Playwright**: E2Eテストフレームワーク
+- **TypeScript**: テストコードの型安全性
 
 ### 主要ディレクトリ
 
@@ -72,9 +92,27 @@ pnpm install
   - `_responsive.scss`: メディアクエリとブレークポイント
   - `style.scss`: すべてのパーシャルをインポートするメインエントリーポイント
 
-### デプロイメント
-- GitHub Actionsワークフロー (`.github/workflows/jekyll.yml`) による自動デプロイ
-- mainブランチへのプッシュ時にGitHub Pagesにデプロイ
+#### テストシステム (`tests/`)
+- `manual/`: E2Eテストスイート
+  - `00-server-check.spec.ts`: サーバー接続テスト
+  - `basic.spec.ts`: 基本的なページテスト
+- `pages/`: ページオブジェクトパターン
+  - `profile.page.ts`: プロフィールページのヘルパー
+
+### CI/CDパイプライン
+
+#### CircleCI (`.circleci/config.yml`)
+mainブランチへのプッシュ時に自動実行：
+- **lint-html-scss**: HTML/SCSSの構文チェック
+- **build-jekyll**: Jekyllビルドの検証
+- **playwright-test**: E2Eテストの実行
+- **security-scan**: Ruby依存関係の脆弱性スキャン
+- **nightly-security-check**: 毎日深夜にセキュリティチェック
+
+#### GitHub Actions (`.github/workflows/jekyll.yml`)
+- mainブランチへのマージ時に自動デプロイ
+- Jekyll静的サイトビルド
+- GitHub Pagesへのデプロイ
 - ベースURL: `https://h-iwata.github.io/profile/`
 
 ## 重要な設定
@@ -86,8 +124,10 @@ pnpm install
 - 開発ファイルのビルド除外設定
 
 ### 開発ツール
-- **HTMLHint**: HTML検証用に設定済み
-- **Stylelint**: 標準設定でのSCSSリンティング
+- **HTMLHint**: HTML検証用に設定済み (`.htmlhintrc`)
+- **Stylelint**: SCSSリンティング (`.stylelintrc.json`)
+- **Playwright**: E2Eテスト (`playwright.config.ts`)
+- **EditorConfig**: エディタ設定の統一 (`.editorconfig`)
 - Jekyll開発用に最適化されたVS Code設定
 
 ## 言語設定
@@ -115,3 +155,39 @@ Cursorを使用する場合、以下の機能が自動的に有効になりま�
 - 日本語でのAIアシスタント対応
 - Jekyll/Liquidテンプレートの文法サポート
 - SCSS/Sassの自動補完とリンティング
+
+## テスト戦略
+
+### E2Eテスト
+- **Playwright**を使用した自動化テスト
+- Chrome、Firefox、WebKitの3ブラウザでテスト
+- ページ読み込み、ナビゲーション、レスポンシブデザインを検証
+- CircleCIで自動実行
+
+### ローカルテスト実行
+```bash
+# 通常のテスト実行
+pnpm test
+
+# 特定のブラウザでテスト
+pnpm test --project=chromium
+
+# デバッグモード
+pnpm test:debug
+```
+
+## トラブルシューティング
+
+### よくある問題と解決方法
+
+1. **Sass @import警告**
+   - 将来的に`@use`と`@forward`への移行が必要
+   - 現時点では警告のみで動作に影響なし
+
+2. **CircleCIでのPlaywrightテスト失敗**
+   - サーバー起動とテスト実行を同一ステップで行う必要がある
+   - `http-server`でビルド済みサイトを配信
+
+3. **pnpmインストールエラー**
+   - Node.js v24.5.0が必要
+   - `nvm use`または`.node-version`ファイルを確認
