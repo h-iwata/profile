@@ -1,0 +1,18 @@
+- title: 'InboxToAction'
+  subtitle: '24時間ルールタスク管理アプリ'
+  description: '24時間でタスクが自動削除される革新的なタスク管理アプリ。忘れたタスクを再入力することで、本当に重要なタスクだけに集中できる仕組みを提供。'
+  technologies:
+    ['React 18', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS', 'Vite']
+  period: '2025年8月'
+  image: 'check-square'
+  demo_image: 'assets/images/projects/inbox-to-action-desktop.png'
+  demo_image_mobile: 'assets/images/projects/inbox-to-action-mobile.png'
+  github_url: 'https://github.com/h-iwata/inbox-to-action'
+  live_url: 'https://inbox-to-action.vercel.app/'
+  highlights:
+    - '24時間自動削除ルールによる重要タスクの選別'
+    - '4つのモード（作成・分類・リスト・実行）でタスク管理を最適化'
+    - 'スワイプジェスチャー対応、直感的な操作感'
+    - 'レスポンシブデザイン（モバイル・デスクトップ対応）'
+    - 'ローカルストレージ自動保存機能'
+    - 'ダークモード対応'

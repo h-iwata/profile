@@ -9,11 +9,13 @@ Jekyllベースの開発者プロフィールサイトです。
 ## 🚀 使用技術
 
 ### コア技術
+
 - **Jekyll 4.4.1** - 静的サイトジェネレーター
 - **Liquid** - Jekyllテンプレートエンジン
 - **Sass/SCSS** - CSSプリプロセッサー
 
 ### 開発ツール
+
 - **Playwright** - E2Eテストフレームワーク
 - **TypeScript** - テストコードの型安全性
 - **pnpm** - 高速なパッケージマネージャー
@@ -23,6 +25,7 @@ Jekyllベースの開発者プロフィールサイトです。
 ## 📋 必要環境
 
 ### 必須
+
 - **Ruby 3.4.5** (rbenv推奨、`.ruby-version`で管理)
 - **Node.js v24.5.0** (nvm推奨、`.node-version`で管理)
 - **pnpm 10.14.0** - パッケージマネージャー
@@ -104,9 +107,9 @@ profile/
 │   │   ├── _responsive.scss # レスポンシブ
 │   │   └── style.scss       # メインファイル
 │   ├── images/         # 画像ファイル
-│   │   └── .gitkeep    
+│   │   └── .gitkeep
 │   └── js/             # JavaScriptファイル
-│       └── .gitkeep    
+│       └── .gitkeep
 ├── _site/              # ビルド出力ディレクトリ（自動生成）
 ├── .circleci/          # CircleCI設定
 │   └── config.yml      # CI/CDパイプライン定義
@@ -134,7 +137,7 @@ profile/
 ├── CLAUDE.md           # Claude Code用ガイダンス
 ├── robots.txt          # 検索エンジン制御
 ├── index.html          # メインページ
-└── README.md           
+└── README.md
 ```
 
 ## 🚀 本番環境へのデプロイ
@@ -152,10 +155,11 @@ profile/
    - mainブランチへのプッシュ時に自動的にビルド・デプロイ
 
 3. **手動デプロイ**
+
    ```bash
    # ビルド
    bundle exec jekyll build
-   
+
    # mainブランチにプッシュすると自動デプロイ
    git push origin main
    ```
@@ -172,20 +176,25 @@ profile/
 ## 🔄 CI/CD
 
 ### CircleCI
+
 mainブランチへのプッシュ時に以下を自動実行：
+
 - HTML/SCSSリンティング
 - Jekyllビルド検証
 - Playwrightによ��E2Eテスト
 - セキュリティスキャン
 
 ### GitHub Actions
+
 mainブランチへのマージ時に自動デプロイ：
+
 - Jekyll静的サイトビルド
 - GitHub Pagesへのデプロイ
 
 ## 📝 開発ガイドライン
 
 ### コード品質
+
 - **Linter**: HTMLHint、Stylelint
 - **テスト**: Playwright E2Eテスト
 - **型チェック**: TypeScript（テストコード）

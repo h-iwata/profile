@@ -1,0 +1,63 @@
+<section class="personal-projects">
+  <div class="container">
+    <h2>Personal Projects</h2>
+    <div class="personal-projects-grid">
+      {% for project in site.data.personal_projects %}
+      <div class="personal-project-card">
+        <div class="personal-project-header">
+          <h3>{{ project.title }}</h3>
+          {% if project.subtitle %}
+          <p class="personal-project-subtitle">{{ project.subtitle }}</p>
+          {% endif %}
+        </div>
+        
+        <p class="personal-project-description">{{ project.description }}</p>
+        
+        {% if project.demo_image %}
+        <div class="personal-project-demo">
+          <div class="demo-images">
+            <img src="{{ project.demo_image | relative_url }}" alt="{{ project.title }} デモ" class="demo-desktop">
+            {% if project.demo_image_mobile %}
+            <img src="{{ project.demo_image_mobile | relative_url }}" alt="{{ project.title }} モバイル版" class="demo-mobile">
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        
+        <div class="personal-project-tech">
+          {% for tech in project.technologies %}
+          <span class="tech-tag">{{ tech }}</span>
+          {% endfor %}
+        </div>
+        
+        <div class="personal-project-highlights">
+          <ul>
+            {% for highlight in project.highlights limit:3 %}
+            <li>{{ highlight }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <div class="personal-project-links">
+          {% if project.live_url %}
+          <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary">
+            <i class="fas fa-external-link-alt"></i> アプリを開く
+          </a>
+          {% endif %}
+          {% if project.github_url %}
+          <a href="{{ project.github_url }}" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-github"></i> ソースコード
+          </a>
+          {% endif %}
+        </div>
+        
+        {% if project.period %}
+        <div class="personal-project-period">
+          <i class="far fa-calendar"></i> {{ project.period }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
