@@ -6,6 +6,9 @@
     "no-duplicate-selectors": true,
     "property-no-vendor-prefix": true,
     "value-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": [true, {
+      "ignoreSelectors": ["::-moz-selection"]
+    }],
     "font-weight-notation": "numeric",
     "scss/dollar-variable-colon-space-after": "always",
     "scss/dollar-variable-colon-space-before": "never",

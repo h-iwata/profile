@@ -8,15 +8,31 @@
 body {
   font-family: $font-family;
   line-height: $line-height-base;
-  color: $text-primary;
-  background: $bg-gradient;
+  color: $text-secondary;
+  background: $bg-primary;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  
+  // Subtle gradient overlay
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba($atom-blue, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba($atom-purple, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba($atom-cyan, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
   padding: 0 $container-padding;
+  position: relative;
+  z-index: 1;
 }
 
 // Typography
@@ -65,20 +81,34 @@ html {
   scroll-behavior: smooth;
 }
 
-// Custom scrollbar
+// Custom scrollbar (Dark theme)
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: $bg-primary;
+  border-radius: $border-radius-sm;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $bg-gradient;
+  background: linear-gradient(135deg, $atom-blue, $atom-purple);
   border-radius: $border-radius-sm;
+  border: 2px solid $bg-primary;
 
   &:hover {
-    filter: brightness(0.95);
+    background: linear-gradient(135deg, #70b7f0, #cf88e4);
   }
+}
+
+// Selection color
+::selection {
+  background: rgba($atom-blue, 0.3);
+  color: $text-primary;
+}
+
+::-moz-selection {
+  background: rgba($atom-blue, 0.3);
+  color: $text-primary;
 }
