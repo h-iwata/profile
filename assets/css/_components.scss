@@ -1,80 +1,191 @@
 // Hero Section
 .hero {
   min-height: 100vh;
-
   @include flex-center;
-
   text-align: center;
   padding: $spacing-3xl 0;
+  position: relative;
+  overflow: hidden;
+  
+  // Animated background particles
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($atom-blue, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
+    opacity: 0.3;
+  }
+}
 
-  @include glassmorphism;
-
-  margin: $spacing-lg 0;
-  box-shadow: $shadow-md;
+@keyframes moveGrid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+  background: rgba($bg-secondary, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: $border-radius-xl;
+  padding: $spacing-3xl;
+  border: 1px solid rgba($atom-border, 0.3);
+  box-shadow: $shadow-card;
 }
 
 .profile-image {
   margin-bottom: $spacing-xl;
+  position: relative;
+  display: inline-block;
   
   img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: $border-radius-full;
-    border: 4px solid $text-white;
-    box-shadow: $shadow-xl;
-    transition: $transition-transform;
-    background: $text-white;
-    padding: 8px;
+    border: 3px solid transparent;
+    background: linear-gradient($bg-primary, $bg-primary) padding-box,
+                $bg-gradient border-box;
+    box-shadow: $shadow-glow;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
     
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: $shadow-glow, 0 0 30px rgba($atom-blue, 0.4);
     }
   }
+  
+  // Animated ring around profile
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: $border-radius-full;
+    background: $bg-gradient;
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 0.1; }
 }
 
 .name {
   @include heading-1;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  background: linear-gradient(135deg, $atom-blue, $atom-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .title {
-  font-size: $font-size-3xl;
-  color: $text-light;
+  font-size: $font-size-2xl;
+  color: $atom-cyan;
   margin-bottom: $spacing-lg;
   font-weight: $font-weight-normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 .description {
   font-size: $font-size-lg;
-  color: $text-light;
+  color: $text-secondary;
   margin-bottom: $spacing-xl;
   line-height: $line-height-relaxed;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .social-links {
   @include flex-center;
-
   gap: $spacing-lg;
   margin-top: $spacing-xl;
 }
 
 .social-link {
   @include social-link;
+  background: rgba($bg-secondary, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba($atom-border, 0.3);
+  
+  &:hover {
+    background: rgba($atom-blue, 0.2);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: $shadow-glow;
+    border-color: $atom-blue;
+  }
 }
 
 // Section Styles
 section {
-  @include glassmorphism(0.95);
-
   margin: $spacing-2xl 0;
   padding: $spacing-3xl $spacing-2xl;
-  box-shadow: $shadow-md;
+  background: rgba($bg-secondary, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba($atom-border, 0.2);
+  box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+  
+  // Subtle gradient overlay - light from top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse 600px 800px at 90% 0%, rgba($atom-purple, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    opacity: 0.8;
+  }
   
   h2 {
     @include heading-2;
+    color: $text-primary;
+    margin-bottom: $spacing-2xl;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    
+    // Underline accent
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: $bg-gradient;
+      border-radius: $border-radius-sm;
+    }
   }
 }
 
@@ -101,18 +212,37 @@ section {
 }
 
 .skill-tag {
-  background: $bg-gradient;
-  color: $text-white;
+  background: rgba($atom-blue, 0.1);
+  color: $atom-blue;
   padding: 8px 16px;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: $font-weight-medium;
-  transition: $transition-transform;
+  transition: all 0.3s ease;
   display: inline-block;
+  border: 1px solid rgba($atom-blue, 0.3);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba($atom-blue, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba($primary-color, 0.4);
+    box-shadow: 0 5px 15px rgba($atom-blue, 0.3);
+    background: rgba($atom-blue, 0.2);
+    
+    &::before {
+      left: 100%;
+    }
   }
 }
 
@@ -126,25 +256,73 @@ section {
 
 .project-card {
   @include card-base;
-
+  background: rgba($bg-secondary, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($atom-border, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Consistent light effect from top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($atom-blue, 0.08) 0%, transparent 60%);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
   p {
     color: $text-secondary;
     margin-bottom: $spacing-lg;
     line-height: $line-height-base;
+  }
+  
+  &:hover {
+    background: rgba($bg-secondary, 0.6);
+    border-color: rgba($atom-blue, 0.3);
+    transform: translateY(-5px);
+    box-shadow: $shadow-glow;
+    
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
 .project-image {
   width: 60px;
   height: 60px;
-  background: $bg-gradient;
+  background: linear-gradient(135deg, rgba($atom-blue, 0.2), rgba($atom-purple, 0.2));
   border-radius: $border-radius-md;
-
   @include flex-center;
-
   margin-bottom: $spacing-lg;
-  color: $text-white;
+  color: $atom-blue;
   font-size: $font-size-3xl;
+  border: 1px solid rgba($atom-blue, 0.3);
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: $border-radius-md;
+    background: $bg-gradient;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  .project-card:hover & {
+    &::after {
+      opacity: 0.3;
+    }
+  }
 }
 
 .project-header-content {
@@ -244,15 +422,30 @@ section {
 // Personal Projects Section
 .personal-projects {
   padding: $spacing-3xl 0;
-  background: #f8f9fa;
+  background: rgba($bg-secondary, 0.2);
   margin: $spacing-lg 0;
+  position: relative;
+  overflow: hidden;
+  
+  // Consistent light from top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse 600px 800px at 90% 0%, rgba($atom-blue, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    opacity: 0.8;
+  }
   
   h2 {
     @include heading-2;
-
     text-align: center;
     margin-bottom: $spacing-2xl;
     color: $text-primary;
+    position: relative;
   }
 }
 
@@ -264,18 +457,40 @@ section {
 }
 
 .personal-project-card {
-  background: white;
+  background: rgba($bg-secondary, 0.4);
   padding: $spacing-xl;
   border-radius: $border-radius-lg;
-  box-shadow: $shadow-sm;
-  transition: $transition-transform, box-shadow 0.3s ease;
+  box-shadow: $shadow-card;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba($atom-border, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  
+  // Hover light effect from top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($atom-purple, 0.08) 0%, transparent 60%);
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: $shadow-xl;
+    box-shadow: $shadow-glow;
+    border-color: rgba($atom-blue, 0.3);
+    background: rgba($bg-secondary, 0.6);
+    
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
@@ -399,23 +614,59 @@ section {
     gap: $spacing-xs;
     
     &.btn-primary {
-      background: $bg-gradient;
+      background: linear-gradient(135deg, $atom-blue, $atom-purple);
       color: $text-white;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
       
       &:hover {
         transform: translateY(-2px);
-        box-shadow: $shadow-lg;
+        box-shadow: 0 10px 30px rgba($atom-blue, 0.4);
+        
+        &::before {
+          left: 100%;
+        }
       }
     }
     
     &.btn-secondary {
-      background: transparent;
-      color: $primary-color;
-      border: 2px solid $primary-color;
+      background: rgba($bg-secondary, 0.5);
+      color: $atom-cyan;
+      border: 1px solid rgba($atom-cyan, 0.5);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, transparent, rgba($atom-cyan, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
       
       &:hover {
-        background: rgba($primary-color, 0.1);
+        background: rgba($atom-cyan, 0.1);
+        border-color: $atom-cyan;
         transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba($atom-cyan, 0.3);
+        
+        &::after {
+          opacity: 1;
+        }
       }
     }
   }
@@ -424,7 +675,7 @@ section {
 .personal-project-period {
   text-align: right;
   font-size: $font-size-xs;
-  color: $text-light;
+  color: $text-muted;
   margin-top: auto;
   
   i {
@@ -445,7 +696,14 @@ section {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: $bg-gradient;
+    background: linear-gradient(180deg, 
+      transparent,
+      $atom-blue 10%,
+      $atom-purple 50%,
+      $atom-blue 90%,
+      transparent
+    );
+    opacity: 0.5;
   }
 }
 
@@ -463,20 +721,63 @@ section {
   height: 20px;
   background: $bg-gradient;
   border-radius: $border-radius-full;
-  border: 4px solid $text-white;
-  box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+  border: 4px solid $bg-primary;
+  box-shadow: 0 0 0 4px rgba($atom-blue, 0.2);
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: $border-radius-full;
+    background: radial-gradient(circle, rgba($atom-blue, 0.4), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
 }
 
 .timeline-content {
+  background: rgba($bg-secondary, 0.3);
+  padding: $spacing-lg;
+  border-radius: $border-radius-md;
+  border: 1px solid rgba($atom-border, 0.2);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Light effect from top-right on hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($atom-cyan, 0.06) 0%, transparent 60%);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
   h3 {
     @include heading-3;
-
     margin-bottom: 5px;
+    color: $text-primary;
   }
 
   p {
     color: $text-secondary;
     line-height: $line-height-base;
+  }
+  
+  &:hover {
+    background: rgba($bg-secondary, 0.5);
+    border-color: rgba($atom-blue, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
@@ -589,10 +890,43 @@ section {
 .contact-btn {
   &.primary {
     @include button-primary;
+    background: linear-gradient(135deg, $atom-blue, $atom-purple);
+    border: none;
+    color: $text-white;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    &:hover::before {
+      width: 300px;
+      height: 300px;
+    }
   }
   
   &.secondary {
     @include button-secondary;
+    background: rgba($bg-secondary, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba($atom-border, 0.3);
+    color: $text-secondary;
+    
+    &:hover {
+      background: rgba($bg-secondary, 0.8);
+      border-color: $atom-blue;
+      color: $atom-blue;
+    }
   }
 }
 
@@ -600,6 +934,21 @@ section {
 .footer {
   text-align: center;
   padding: $spacing-2xl 0;
-  color: $text-white;
+  color: $text-secondary;
   font-size: 0.9rem;
+  background: linear-gradient(180deg, transparent, rgba($bg-secondary, 0.3));
+  margin-top: $spacing-3xl;
+  border-top: 1px solid rgba($atom-border, 0.2);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: $bg-gradient;
+  }
 } 
