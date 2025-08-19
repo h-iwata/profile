@@ -101,6 +101,21 @@
     font-size: 0.75rem;
     padding: 3px 10px;
   }
+  
+  .personal-project-demo .demo-images {
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-sm;
+    
+    img.demo-desktop {
+      max-width: 100%;
+    }
+    
+    img.demo-mobile {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
 }
 
 @include mobile-small {
