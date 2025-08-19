@@ -18,10 +18,7 @@ body {
   &::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(circle at 20% 50%, rgba($atom-blue, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba($atom-purple, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 40% 20%, rgba($atom-cyan, 0.03) 0%, transparent 50%);

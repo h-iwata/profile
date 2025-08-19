@@ -1,7 +1,9 @@
 // Hero Section
 .hero {
   min-height: 100vh;
+
   @include flex-center;
+
   text-align: center;
   padding: $spacing-3xl 0;
   position: relative;
@@ -17,12 +19,12 @@
     height: 200%;
     background: radial-gradient(circle, rgba($atom-blue, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
-    animation: moveGrid 20s linear infinite;
+    animation: move-grid 20s linear infinite;
     opacity: 0.3;
   }
 }
 
-@keyframes moveGrid {
+@keyframes move-grid {
   0% { transform: translate(0, 0); }
   100% { transform: translate(50px, 50px); }
 }
@@ -66,10 +68,7 @@
   &::before {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
+    inset: -10px;
     border-radius: $border-radius-full;
     background: $bg-gradient;
     opacity: 0.3;
@@ -79,23 +78,30 @@
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.05); opacity: 0.1; }
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.1;
+  }
 }
 
 .name {
   @include heading-1;
+
   color: $text-primary;
   margin-bottom: $spacing-md;
   background: linear-gradient(135deg, $atom-blue, $atom-purple);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 5s ease infinite;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 5s ease infinite;
   background-size: 200% 200%;
 }
 
-@keyframes gradientShift {
+@keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
@@ -122,12 +128,14 @@
 
 .social-links {
   @include flex-center;
+
   gap: $spacing-lg;
   margin-top: $spacing-xl;
 }
 
 .social-link {
   @include social-link;
+
   background: rgba($bg-secondary, 0.5);
   backdrop-filter: blur(5px);
   border: 1px solid rgba($atom-border, 0.3);
@@ -167,6 +175,7 @@ section {
   
   h2 {
     @include heading-2;
+
     color: $text-primary;
     margin-bottom: $spacing-2xl;
     position: relative;
@@ -256,6 +265,7 @@ section {
 
 .project-card {
   @include card-base;
+
   background: rgba($bg-secondary, 0.4);
   backdrop-filter: blur(10px);
   border: 1px solid rgba($atom-border, 0.2);
@@ -300,7 +310,9 @@ section {
   height: 60px;
   background: linear-gradient(135deg, rgba($atom-blue, 0.2), rgba($atom-purple, 0.2));
   border-radius: $border-radius-md;
+
   @include flex-center;
+
   margin-bottom: $spacing-lg;
   color: $atom-blue;
   font-size: $font-size-3xl;
@@ -442,6 +454,7 @@ section {
   
   h2 {
     @include heading-2;
+
     text-align: center;
     margin-bottom: $spacing-2xl;
     color: $text-primary;
@@ -627,7 +640,7 @@ section {
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgb(255 255 255 / 20%), transparent);
         transition: left 0.5s ease;
       }
       
@@ -723,7 +736,6 @@ section {
   border-radius: $border-radius-full;
   border: 4px solid $bg-primary;
   box-shadow: 0 0 0 4px rgba($atom-blue, 0.2);
-  position: relative;
   
   &::after {
     content: '';
@@ -761,6 +773,7 @@ section {
   
   h3 {
     @include heading-3;
+
     margin-bottom: 5px;
     color: $text-primary;
   }
@@ -773,7 +786,7 @@ section {
   &:hover {
     background: rgba($bg-secondary, 0.5);
     border-color: rgba($atom-blue, 0.3);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 30%);
     
     &::before {
       opacity: 1;
@@ -890,6 +903,7 @@ section {
 .contact-btn {
   &.primary {
     @include button-primary;
+
     background: linear-gradient(135deg, $atom-blue, $atom-purple);
     border: none;
     color: $text-white;
@@ -904,7 +918,7 @@ section {
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgb(255 255 255 / 20%);
       transform: translate(-50%, -50%);
       transition: width 0.6s ease, height 0.6s ease;
     }
@@ -917,6 +931,7 @@ section {
   
   &.secondary {
     @include button-secondary;
+
     background: rgba($bg-secondary, 0.5);
     backdrop-filter: blur(5px);
     border: 1px solid rgba($atom-border, 0.3);
