@@ -249,6 +249,7 @@ section {
   
   h2 {
     @include heading-2;
+
     text-align: center;
     margin-bottom: $spacing-2xl;
     color: $text-primary;
@@ -283,6 +284,7 @@ section {
   
   h3 {
     @include heading-3;
+
     margin-bottom: $spacing-xs;
     color: $primary-color;
   }
