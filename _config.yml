@@ -12,6 +12,7 @@ baseurl: "/profile" # the subpath of your site, e.g. /blog
 url: "https://h-iwata.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: h-iwata
 linkedin_username: hideyuki-iwata-39a570176/
+lapras_username: h-iwata
 contact_description: 新しいプロジェクトやコラボレーションの機会について話し合いましょう。
 
 # Skills

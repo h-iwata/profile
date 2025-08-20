@@ -901,6 +901,116 @@ section {
 }
 
 .contact-btn {
+  // LinkedIn Button - Atom One Dark Blue
+  &.linkedin {
+    @include button-primary;
+    
+    background: rgba($atom-bg-light, 0.8);
+    border: 1px solid $atom-blue;
+    color: $atom-blue;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba($atom-blue, 0.2);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($atom-blue, 0.3), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    &:hover {
+      background: linear-gradient(135deg, rgba($atom-blue, 0.2), rgba($atom-blue, 0.1));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($atom-blue, 0.3);
+      color: $atom-text-bright;
+      border-color: $atom-cyan;
+      
+      &::before {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+  
+  // Lapras Button - Atom One Dark Green
+  &.lapras {
+    @include button-primary;
+    
+    background: rgba($atom-bg-light, 0.8);
+    border: 1px solid $atom-green;
+    color: $atom-green;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba($atom-green, 0.2);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($atom-green, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    &:hover {
+      background: linear-gradient(135deg, rgba($atom-green, 0.2), rgba($atom-green, 0.1));
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba($atom-green, 0.3);
+      color: $atom-text-bright;
+      border-color: $atom-yellow;
+      
+      &::before {
+        left: 100%;
+      }
+    }
+  }
+  
+  // GitHub Button - Atom One Dark Purple
+  &.github {
+    @include button-secondary;
+    
+    background: rgba($atom-bg-light, 0.8);
+    border: 1px solid $atom-purple;
+    color: $atom-purple;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba($atom-purple, 0.2);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba($atom-purple, 0.1), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    &:hover {
+      background: linear-gradient(135deg, rgba($atom-purple, 0.2), rgba($atom-purple, 0.1));
+      transform: translateY(-3px) rotate(-1deg);
+      box-shadow: 0 8px 25px rgba($atom-purple, 0.3);
+      color: $atom-text-bright;
+      border-color: $atom-cyan;
+      
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Legacy classes (keep for backward compatibility)
   &.primary {
     @include button-primary;
 
