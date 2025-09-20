@@ -63,4 +63,4 @@ dist/
 pnpm-lock.yaml
 
 # memo
-# /offers/ - submodule として管理するためコメントアウト
+# /profile-offers/ - submodule として管理
