@@ -135,7 +135,7 @@ profile/
 │   ├── forkwell/       # Forkwell経由のオファー
 │   ├── lapras/         # LAPRAS経由のオファー
 │   ├── interview/      # 面談関連資料
-│   └── CLAUDE.md       # オファー分析用ガイダンス
+│   └── AGENTS.md       # オファー分析用ガイダンス
 ├── _site/              # ビルド出力ディレクトリ（自動生成）
 ├── .circleci/          # CircleCI設定
 │   └── config.yml      # CI/CDパイプライン定義
