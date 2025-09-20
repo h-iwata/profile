@@ -126,11 +126,12 @@ pnpm exec playwright install
 - **構造**:
   - `current/`: 現在のオファー
   - `forkwell/`: Forkwell経由のオファー
-  - `lapras/`: LAPRAS経由のオファー  
+  - `lapras/`: LAPRAS経由のオファー
   - `interview/`: 面談関連資料
   - `CLAUDE.md`: オファー分析用ガイダンス
 
 **アクセス制限**:
+
 - 適切なGitHub権限が必要
 - 公開クローン時はこのフォルダは空になります
 - 機密情報の完全分離により、メインプロジェクトの公開性を保持
