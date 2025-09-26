@@ -4,39 +4,102 @@ orbs:
   ruby: circleci/ruby@2.1.4
   node: circleci/node@5.2.0
 
+# Reusable commands
+commands:
+  setup-pnpm:
+    description: "Setup pnpm package manager"
+    steps:
+      - run:
+          name: Setup pnpm package manager
+          command: |
+            wget -qO- https://get.pnpm.io/install.sh | env SHELL=/bin/bash PNPM_VERSION=10.14.0 sh -
+            echo 'export PNPM_HOME="${HOME}/.local/share/pnpm"' >> $BASH_ENV
+            echo 'export PATH="$PNPM_HOME:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+            pnpm config set store-dir .pnpm-store
+
+  restore-pnpm-cache:
+    description: "Restore pnpm cache"
+    steps:
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+
+  save-pnpm-cache:
+    description: "Save pnpm cache"
+    steps:
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .pnpm-store
+
+  install-pnpm-deps:
+    description: "Install Node dependencies with pnpm"
+    steps:
+      - restore-pnpm-cache
+      - setup-pnpm
+      - run:
+          name: Install Node dependencies
+          command: pnpm install --no-frozen-lockfile
+      - save-pnpm-cache
+
+  run-security-scan:
+    description: "Run security audit"
+    parameters:
+      type:
+        type: enum
+        enum: ["ruby", "npm", "both"]
+        default: "both"
+    steps:
+      - when:
+          condition:
+            or:
+              - equal: [ruby, << parameters.type >>]
+              - equal: [both, << parameters.type >>]
+          steps:
+            - run:
+                name: Ruby security audit
+                command: |
+                  gem install bundler-audit
+                  bundle audit update
+                  bundle audit check
+      - when:
+          condition:
+            or:
+              - equal: [npm, << parameters.type >>]
+              - equal: [both, << parameters.type >>]
+          steps:
+            - install-pnpm-deps
+            - run:
+                name: NPM security audit
+                command: |
+                  pnpm audit --json > npm-audit.json || true
+                  VULN_COUNT=$(jq '[.metadata.vulnerabilities.moderate, .metadata.vulnerabilities.high, .metadata.vulnerabilities.critical] | add // 0' npm-audit.json)
+                  jq '.metadata.vulnerabilities // {}' npm-audit.json
+                  [ "$VULN_COUNT" -eq 0 ] && echo "✅ No vulnerabilities" || echo "⚠️  Found $VULN_COUNT vulnerabilities"
+            - store_artifacts:
+                path: npm-audit.json
+                destination: security-reports
+
+# Reusable executors
 executors:
   jekyll-executor:
     docker:
       - image: cimg/ruby:3.4.5-node
     working_directory: ~/repo
 
+  playwright-executor:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.54.2-jammy
+
 jobs:
   lint-html-scss:
     executor: jekyll-executor
     steps:
       - checkout
-      - restore_cache:
-          name: Restore pnpm Package Cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-      - run:
-          name: Setup pnpm package manager
-          command: |
-            # pnpmをスタンドアロンインストール（権限エラー回避）
-            wget -qO- https://get.pnpm.io/install.sh | env SHELL=/bin/bash PNPM_VERSION=10.14.0 sh -
-            echo 'export PNPM_HOME="/home/circleci/.local/share/pnpm"' >> $BASH_ENV
-            echo 'export PATH="$PNPM_HOME:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            pnpm config set store-dir .pnpm-store
-      - run:
-          name: Install Node dependencies
-          command: |
-            pnpm install --no-frozen-lockfile
-      - save_cache:
-          name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-          paths:
-            - .pnpm-store
+      - install-pnpm-deps
       - run:
           name: Run SCSS linter
           command: pnpm run lint:scss
@@ -61,10 +124,7 @@ jobs:
       - run:
           name: Check build output
           command: |
-            if [ ! -d "_site" ]; then
-              echo "Build failed: _site directory not found"
-              exit 1
-            fi
+            [ -d "_site" ] || { echo "Build failed: _site directory not found"; exit 1; }
             echo "Build successful! Site files:"
             ls -la _site/
       - persist_to_workspace:
@@ -73,45 +133,19 @@ jobs:
             - _site
 
   playwright-test:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.54.2-jammy
+    executor: playwright-executor
     steps:
       - checkout
       - attach_workspace:
           at: .
-      - restore_cache:
-          name: Restore pnpm Package Cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-      - run:
-          name: Setup pnpm package manager
-          command: |
-            # pnpmをスタンドアロンインストール
-            wget -qO- https://get.pnpm.io/install.sh | env SHELL=/bin/bash PNPM_VERSION=10.14.0 sh -
-            echo 'export PNPM_HOME="/root/.local/share/pnpm"' >> $BASH_ENV
-            echo 'export PATH="$PNPM_HOME:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            pnpm config set store-dir .pnpm-store
-      - run:
-          name: Install dependencies
-          command: |
-            pnpm install --no-frozen-lockfile
-      - save_cache:
-          name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-          paths:
-            - .pnpm-store
+      - install-pnpm-deps
       - run:
           name: Run Playwright tests
           command: |
-            # サーバー用ディレクトリ構成
+            # Setup test server
             mkdir -p temp_serve/profile
             cp -r _site/* temp_serve/profile/
-            
-            # 必要パッケージをインストール
             pnpm add -D http-server
-            
-            # サーバー起動とテスト実行
             npx http-server temp_serve -p 4000 &
             sleep 3
             export BASE_URL="http://localhost:4000/profile"
@@ -123,19 +157,11 @@ jobs:
           destination: playwright-report
 
   security-scan:
-    docker:
-      - image: cimg/ruby:3.4.5
+    executor: jekyll-executor
     steps:
       - checkout
-      - run:
-          name: Install bundler-audit
-          command: gem install bundler-audit
-      - run:
-          name: Update vulnerability database
-          command: bundle audit update
-      - run:
-          name: Check for vulnerable dependencies
-          command: bundle audit check
+      - run-security-scan:
+          type: both
 
 workflows:
   version: 2
