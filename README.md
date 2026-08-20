@@ -26,24 +26,41 @@ Jekyllベースの開発者プロフィールサイトです。
 
 ### 必須
 
-- **Ruby 3.4.5** (rbenv推奨、`.ruby-version`で管理)
-- **Node.js v24.5.0** (nvm推奨、`.node-version`で管理)
-- **pnpm 10.14.0** - パッケージマネージャー
+- **Ruby 3.4.5** (`.ruby-version`で管理)
+- **Node.js v24.5.0** (`.node-version`で管理)
+- **pnpm 10.14.0** (`package.json`の`packageManager`で管理)
+
+ランタイムのバージョン管理には **[mise](https://mise.jdx.dev/)** を使用します。Ruby・Node.jsを一元管理でき、`.ruby-version` / `.node-version` をそのまま読み込みます（rbenv・nvmは不要）。
 
 ### セットアップ
 
 ```bash
-# Ruby環境（rbenv使用）
-rbenv install 3.4.5
-gem install bundler
+# mise本体のインストール（未導入の場合）
+brew install mise
 
-# Node.js環境（nvm使用）
-nvm install 24.5.0
-npm install -g pnpm
+# シェルへの登録（zshの場合。初回のみ）
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+exec $SHELL -l
+
+# .ruby-version / .node-version を読み込む設定（初回のみ）
+mise settings add idiomatic_version_file_enable_tools ruby
+mise settings add idiomatic_version_file_enable_tools node
+
+# Rubyのビルドに必要なライブラリ（macOS）
+brew install openssl@3 readline libyaml gmp
+
+# プロジェクトルートでRuby・Node.jsを一括インストール
+mise install
+
+# パッケージマネージャー
+gem install bundler:2.7.1   # Gemfile.lockのBUNDLED WITHに合わせる
+corepack enable             # package.jsonのpackageManagerに従いpnpmが有効化される
 
 # Playwrightブラウザのインストール
 pnpm exec playwright install
 ```
+
+**補足**: `mise install` はプロジェクトルートの`.ruby-version` / `.node-version`を参照して、指定バージョンをインストールします。ディレクトリに入ると自動でそのバージョンへ切り替わります。
 
 ### Submodule（プライベートリポジトリ）
 

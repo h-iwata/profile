@@ -10,8 +10,8 @@
 
 ## 技術スタック
 - Jekyll 4.4.1
-- Ruby 3.4.5 (rbenv管理)
-- Node.js v24.5.0
+- Ruby 3.4.5 (mise管理)
+- Node.js v24.5.0 (mise管理)
 - pnpm (パッケージマネージャー)
 - Sass/SCSS
 - Liquid テンプレート

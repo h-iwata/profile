@@ -87,8 +87,8 @@ pnpm exec playwright install
 ### コア技術
 
 - **Jekyll 4.4.1**: 静的サイトジェネレーター
-- **Ruby 3.4.5**: rbenv経由で管理 (.ruby-version)
-- **Node.js v24.5.0**: ビルドツールとテスト用 (.node-version)
+- **Ruby 3.4.5**: mise経由で管理 (.ruby-version)
+- **Node.js v24.5.0**: ビルドツールとテスト用、mise経由で管理 (.node-version)
 - **pnpm 10.14.0**: Node.js依存関係のパッケージマネージャー
 - **Playwright**: E2Eテストフレームワーク
 - **TypeScript**: テストコードの型安全性
@@ -277,7 +277,7 @@ git push origin main
 
 3. **pnpmインストールエラー**
    - Node.js v24.5.0が必要
-   - `nvm use`または`.node-version`ファイルを確認
+   - `mise install`で`.node-version`のバージョンを導入済みか確認
 
 4. **Submodule関連の問題**
    - `profile-offers/`フォルダが空の場合: `git submodule update --init --recursive`
