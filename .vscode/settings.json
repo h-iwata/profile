@@ -58,6 +58,7 @@
     "**/*.css",
     "!**/assets/css/style.scss"
   ],
+  "cSpell.enabled": false,
   "html.format.enable": true,
   "html.format.wrapLineLength": 300,
   "html.format.wrapAttributes": "auto",
