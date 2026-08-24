@@ -1,3 +1,28 @@
+- title: 'TypeScript DDD Example'
+  subtitle: 'tsoa + InversifyJS + TypeORM によるDDD実装サンプル'
+  description: 'ECサイトの注文システムを題材にしたドメイン駆動設計のリファレンス実装。集約の境界設計・値オブジェクト・ドメインサービス・リポジトリ抽象化を、テストと厳格なlintで担保しながら実装。DDDを学習・教育する目的で公開。'
+  technologies:
+    [
+      'TypeScript',
+      'tsoa',
+      'InversifyJS',
+      'TypeORM',
+      'Express',
+      'Jest',
+      'MySQL',
+      'Docker',
+    ]
+  period: '2026年1月'
+  image: 'layer-group'
+  github_url: 'https://github.com/h-iwata/ts-ddd-example-tsoa-typeorm'
+  highlights:
+    - '3集約（Product/Customer/Order）の境界設計と集約間の整合性担保'
+    - 'ドメイン層カバレッジ100%、ユニット202件・統合29件のテスト'
+    - '循環的複雑度7・関数10行というRuboCop相当の厳格ESLint運用'
+    - 'tsoaによるコードからのOpenAPI/Swagger UI自動生成'
+    - 'InversifyJSのDIによるInMemory/MySQLリポジトリの差し替え'
+    - 'Docker Composeで完結する開発・テスト環境'
+
 - title: 'InboxToAction'
   subtitle: '24時間ルールタスク管理アプリ'
   description: '24時間でタスクが自動削除される革新的なタスク管理アプリ。忘れたタスクを再入力することで、本当に重要なタスクだけに集中できる仕組みを提供。'

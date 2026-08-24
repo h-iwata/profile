@@ -27,20 +27,39 @@
     - "整合性の担保責務をサーバへ移管し不整合を解消"
     - "リファクタリング設計のチームへの展開・レビュー"
 
-- title: "open-lutra（ROS2データ収録・品質分析ツール）"
-  description: "ロボティクス領域の新規プロダクトとして、ROS2ベースのデータ収録・品質分析・アノテーション基盤連携ツールをゼロから設計・実装し、OSSとして公開。未経験ドメインを独学し、曖昧な要望を要件定義のレベルから具体化して製品化まで到達させた。"
-  technologies: ["Python", "ROS2", "TypeScript(React)", "Three.js"]
-  period: "2026年1月 - 2026年3月"
+- title: "OpenLUTRA（ROS2データ収録・品質分析システム）"
+  description: "ロボットのティーチングデータ収集をWeb UIから行うシステム。ROS2トピックをMCAP形式で録画し、収録中はDDS経由で周波数・欠損をリアルタイム監視、収録後はMCAPを解析して品質を可視化する。ロボティクス未経験の状態から業務ドメインを独学し、曖昧な要望を要件定義から具体化してApache-2.0のOSS公開まで到達させた。"
+  technologies:
+    [
+      "Python",
+      "FastAPI",
+      "ROS2(rclpy)",
+      "MCAP",
+      "CycloneDDS",
+      "SSE",
+      "React 19",
+      "TypeScript",
+      "TanStack Query",
+      "Zustand",
+      "Tailwind CSS 4",
+      "shadcn/ui",
+      "uPlot",
+      "orval(OpenAPI)",
+      "Docker",
+      "uv",
+    ]
+  period: "2026年2月 - 2026年4月"
   current: false
   image: "robot"
-  github_url: "https://github.com/h-iwata"
+  github_url: "https://github.com/fastlabel/open-lutra"
   highlights:
-    - "未経験ドメインを独学し要件定義から単独で主導"
-    - "OSS公開前のコードを100%単独実装"
-    - "メモリ使用量の大幅削減による大容量実機データの安定処理"
-    - "品質分析のジッタ除外ロジックの設計・実装"
-    - "テストカバレッジ100%の維持"
-    - "URDFビューア・テレメトリ連動の実装"
+    - "録画・監視・分析を分離したハイブリッドアーキテクチャの設計（メモリ隔離による長時間録画の安定化）"
+    - "IQRベース（Q3+1.5×IQR）の統計的欠損検出とタイムラインヒートマップによる品質可視化"
+    - "SSEによる周波数・欠損率・ジョブ進捗のリアルタイム配信"
+    - "OpenAPIスキーマからorvalでTanStack Query hooks・型・MSWモックを自動生成し型を一元化"
+    - "Bulletproof Reactパターン＋Biomeのimport制限によるfeature境界の強制"
+    - "mypy strict・カバレッジ100%運用（pytest 337ケース / Vitest 204ケース）"
+    - "OSS公開前のコードを100%単独実装（Python約1.2万行 + TypeScript約1.8万行）"
 
 - title: "オンライン・実スクール運営システム"
   description: "ライフイズテック株式会社のオンライン型プログラミングスクールの新サービス立ち上げ。レガシー化していたリアルスクール運営システムの維持管理全般を担当。"
