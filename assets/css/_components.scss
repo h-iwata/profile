@@ -555,6 +555,12 @@ section {
       overflow: hidden;
       box-shadow: $shadow-md;
     }
+
+    // モバイル版の画像がない場合は全幅を使う
+    img.demo-desktop:only-child {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
     
     img.demo-mobile {
       flex: 0 0 25%;

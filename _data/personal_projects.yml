@@ -14,6 +14,7 @@
     ]
   period: '2026年1月'
   image: 'layer-group'
+  demo_image: 'assets/images/projects/ts-ddd-example-swagger.png'
   github_url: 'https://github.com/h-iwata/ts-ddd-example-tsoa-typeorm'
   highlights:
     - '3集約（Product/Customer/Order）の境界設計と集約間の整合性担保'
