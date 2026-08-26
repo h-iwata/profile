@@ -24,7 +24,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASE_URL || 'http://localhost:4000',
+    baseURL: process.env.BASE_URL || 'http://localhost:4001',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -73,8 +73,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   // webServer: {
-  //   command: 'bundle exec jekyll serve',
-  //   url: 'http://localhost:4000',
+  //   command: 'pnpm run dev',
+  //   url: 'http://localhost:4001',
   //   reuseExistingServer: true,  // 既存のサーバーを再利用
   //   timeout: 120 * 1000,
   // },

@@ -94,14 +94,16 @@ pnpm install
 ### 2. 開発サーバーの起動
 
 ```bash
-# Jekyllサーバー起動
-bundle exec jekyll serve
+# 開発サーバー起動（ライブリロード付き、ポート4001）
+pnpm run dev
 
-# ライブリロード付き
-bundle exec jekyll serve --livereload
+# Jekyllを直接起動する場合
+bundle exec jekyll serve --livereload --port 4001
 ```
 
-アクセスURL: http://localhost:4000/profile/
+アクセスURL: http://localhost:4001/profile/
+
+**ポートについて**: Jekyllのデフォルトは4000番ですが、他のツールと衝突しやすいため4001番を使用しています。変更する場合は`package.json`の`dev`スクリプトを編集してください。
 
 ### 3. テストの実行
 
@@ -283,7 +285,7 @@ git push origin main
 
 ```bash
 # 開発
-pnpm run dev          # 開発サーバー起動
+pnpm run dev          # 開発サーバー起動（ライブリロード、http://localhost:4001/profile/）
 pnpm run build        # プロダクションビルド
 
 # テスト

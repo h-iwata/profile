@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 
-import { execSync } from 'child_process';
+import { execSync, spawn } from 'child_process';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
@@ -9,12 +9,12 @@ const runTests = () => {
   
   // Jekyll サーバーが起動しているかチェック
   try {
-    execSync('curl -s http://localhost:4000 > /dev/null', { stdio: 'ignore' });
+    execSync('curl -s http://localhost:4001 > /dev/null', { stdio: 'ignore' });
     console.log('✅ Jekyll server is running');
   } catch {
     console.log('⚠️  Starting Jekyll server...');
     // バックグラウンドでJekyllサーバーを起動 (cross-platform, proper process management)
-    const jekyllProcess = spawn('bundle', ['exec', 'jekyll', 'serve'], {
+    const jekyllProcess = spawn('bundle', ['exec', 'jekyll', 'serve', '--port', '4001'], {
       detached: true,
       stdio: 'inherit'
     });

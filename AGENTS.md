@@ -21,10 +21,10 @@ h-iwataのJekyllベースの開発者プロフィールサイトです。Jekyll�
 
 ```bash
 # Jekyll開発サーバーを起動
-bundle exec jekyll serve
+pnpm run dev
 
 # ライブリロード付きで起動
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --port 4001
 
 # 本番用にビルド
 bundle exec jekyll build

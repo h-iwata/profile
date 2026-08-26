@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "H-iwata Developer Profile Site",
   "scripts": {
+    "dev": "bundle exec jekyll serve --livereload --port 4001",
+    "build": "bundle exec jekyll build",
     "lint:html": "htmlhint index.html _layouts/*.html",
     "lint:scss": "stylelint \"assets/css/_*.scss\"",
     "lint": "pnpm run lint:html && pnpm run lint:scss",

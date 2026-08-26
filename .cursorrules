@@ -52,7 +52,7 @@ _site/          # ビルド出力（触らない）
 1. 適切なディレクトリにファイルを作成
 2. 既存のパターンに従って実装
 3. `pnpm run lint`でコード品質チェック
-4. `bundle exec jekyll serve`でローカル確認
+4. `pnpm run dev`でローカル確認
 
 ### スタイル変更時
 1. 適切なSCSSパーシャルファイルを編集
@@ -67,7 +67,7 @@ _site/          # ビルド出力（触らない）
 ## よく使うコマンド
 ```bash
 # 開発サーバー起動
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --port 4001
 
 # リンティング
 pnpm run lint
